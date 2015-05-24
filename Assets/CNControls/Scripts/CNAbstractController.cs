@@ -415,8 +415,9 @@ public abstract class CNAbstractController : MonoBehaviour
     /// <returns>Whether it's inside of the touch zone</returns>
     private bool IsTouchInZone(Vector2 touchPosition)
     {
-        return CalculatedTouchZone.Contains(ParentCamera.ScreenToWorldPoint(touchPosition), false);
-    }
+        //return CalculatedTouchZone.Contains(ParentCamera.ScreenToWorldPoint(touchPosition), false);
+		return true;
+	}
 
     /// <summary>
     /// Custom Tweaking method

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Scaling : MonoBehaviour {
 
-	public float size;
+	public float size = 10;
 
 	void Awake (){
-		size = 10;
+
 	}
 
 	void Start () {
@@ -14,6 +14,6 @@ public class Scaling : MonoBehaviour {
 	}
 
 	void Update () {
-		iTween.ScaleUpdate (this.gameObject, new Vector3 (size, size, 1), 5);
+		iTween.ScaleUpdate (this.gameObject, new Vector3 (size, size, 1), 1);
 	}
 }

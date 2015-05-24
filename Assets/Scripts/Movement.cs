@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour {
 
 	}
 	
-	void Update() {
+	void FixedUpdate() {
 		float translationY = movementController.GetAxis("Vertical") * speed * Time.deltaTime;
 		float translationX = movementController.GetAxis("Horizontal") * speed * Time.deltaTime;
 		transform.Translate (translationX, translationY, 0);
