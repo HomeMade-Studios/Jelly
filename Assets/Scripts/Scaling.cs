@@ -13,7 +13,7 @@ public class Scaling : MonoBehaviour {
 
 	void Update () {
 		UpdateSize ();
-		iTween.ScaleUpdate (this.gameObject, new Vector3 (size, size, 1), 1);
+		iTween.ScaleUpdate (this.gameObject, new Vector3 (size, size, 1), 0.5f);
 	}
 
 	void UpdateSize(){
