@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Scaling : MonoBehaviour {
 
-	Controller cellController;
+	Cell cellController;
 	float size;
 
 	void Awake (){
-		cellController = gameObject.GetComponent<Controller> ();
+		cellController = gameObject.GetComponent<Cell> ();
 		UpdateSize ();
 	}
 
@@ -19,4 +19,5 @@ public class Scaling : MonoBehaviour {
 	void UpdateSize(){
 		size = cellController.Mass/10;
 	}
+
 }

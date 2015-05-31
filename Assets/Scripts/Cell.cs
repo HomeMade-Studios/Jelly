@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controller : MonoBehaviour {
+public class Cell : MonoBehaviour {
 
 	public int mass;
 	public Collider2D[] eatedColliders;
 	bool eated = false;
 
 	void Awake(){
-		mass = 10;
 		eatedColliders = gameObject.transform.FindChild ("EatedColliders").GetComponents<Collider2D> ();
 	}
 
 	void Eated(GameObject eater) {
 		transform.position = Vector2.Lerp (transform.position, eater.transform.position, 1f);
-		eater.GetComponent<Controller> ().Mass += mass;
+		eater.GetComponent<Cell> ().Mass += mass;
 		eated = true;
 		Invoke ("Destroy", 0.10f);
 

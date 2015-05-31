@@ -7,7 +7,7 @@ public class Microbe : MonoBehaviour {
 
 	void Eated(GameObject eater) {
 		transform.position = Vector2.Lerp (transform.position, eater.transform.position, 1f);
-		eater.GetComponent<Controller> ().Mass += mass;
+		eater.GetComponent<Cell> ().Mass += mass;
 		Invoke ("Destroy", 0.10f);
 		
 	}
