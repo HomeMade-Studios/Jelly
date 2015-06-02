@@ -35,7 +35,6 @@ public class Cell : MonoBehaviour {
 		eater.GetComponent<Cell> ().Mass += mass;
 		eated = true;
 		Invoke ("Destroy", 0.25f);
-		
 	}
 
 	void Scale(){

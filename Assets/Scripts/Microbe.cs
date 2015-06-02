@@ -3,16 +3,9 @@ using System.Collections;
 
 public class Microbe : MonoBehaviour {
 
-	public int mass = 1;
-
 	void Eated(GameObject eater) {
-		transform.position = Vector2.Lerp (transform.position, eater.transform.position, 1f);
-		eater.GetComponent<Cell> ().Mass += mass;
-		Invoke ("Destroy", 0.10f);
-		
-	}
-	
-	void Destroy(){
+		transform.position = Vector2.MoveTowards (transform.position, eater.transform.position, 1f);
+		eater.GetComponent<Cell> ().Mass += 1;
 		Destroy (this.gameObject);
 	}
 
