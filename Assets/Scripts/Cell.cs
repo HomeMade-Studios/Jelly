@@ -3,48 +3,39 @@ using System.Collections;
 
 public class Cell : MonoBehaviour {
 
-	public float mass;
-	public Collider2D[] eatedColliders;
-	private float size;
-	bool eated = false;
-
-	void Awake(){
-		eatedColliders = gameObject.transform.FindChild ("EatedColliders").GetComponents<Collider2D> ();
-	}
+	public float mass;  	//EQUAL TO RADIUS
+	private float scale;	//TRANSFORM.SCALE PARAMETER
+	private float radius;	//RADIUS OF THE CIRCLE
+	private bool eated = false;  //IS ALREADY BE EATED
 
 	void Update(){
 		Scale();
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if ((other.gameObject.tag == "EatCollider") && !eated) {
-			CheckEated (other.gameObject.transform.parent.gameObject);
+		if ((other.gameObject.GetComponent<Cell>().Mass >= mass + mass/100*10) && !eated) {
+			CheckEated (other.gameObject);
 		}
 	}
 
 	void CheckEated(GameObject eater) {
+
+		float area = radius*radius;
+		print (area + "\t" + intersectionArea + "\t" + r1 + "\t" + r2 + "\t" + d);
+		if(intersectionArea >= area/100*99){
 		
-		Collider2D otherEatCollider = eater.gameObject.GetComponent<Collider2D>();
-		
-		foreach(Collider2D eatedCollider in eatedColliders){
-			if (!eatedCollider.bounds.Intersects(otherEatCollider.bounds))
-				return;
+			transform.position = Vector2.MoveTowards (transform.position, eater.transform.position, 10f);
+			eater.GetComponent<Cell> ().Mass += mass;
+			eated = true;
+			Invoke ("Destroy", 0.25f);
 		}
-		
-		transform.position = Vector2.MoveTowards (transform.position, eater.transform.position, 1f);
-		eater.GetComponent<Cell> ().Mass += mass;
-		eated = true;
-		Invoke ("Destroy", 0.25f);
 	}
 
 	void Scale(){
-		if(size != mass/10){
-			size = mass/10;
-			Vector3 newScale = new Vector3 (size, size, 1);
-			transform.localScale = Vector3.Lerp(transform.localScale, newScale, Time.deltaTime);
-
-		}
-		print (mass/10);
+		radius = Mathf.Sqrt(mass/Mathf.PI);
+		scale = (radius * 1.11f)/2;
+		Vector3 newScale = new Vector3 (scale, scale, 1);
+		transform.localScale = Vector3.Lerp(transform.localScale, newScale, 2.5f*Time.deltaTime);
 	}
 	
 	void Destroy(){
@@ -52,4 +43,6 @@ public class Cell : MonoBehaviour {
 	}
 
 	public float Mass { get { return mass; } set { mass = value; } }
+
+	public float Radius { get {return radius; } }
 }
