@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Cell : MonoBehaviour {
 
-	public int mass;
+	public float mass;
 	public Collider2D[] eatedColliders;
 	private float size;
 	bool eated = false;
@@ -41,13 +41,16 @@ public class Cell : MonoBehaviour {
 	void Scale(){
 		if(size != mass/10){
 			size = mass/10;
-			iTween.ScaleTo (this.gameObject, new Vector3 (size, size, 1), 0.5f);
+			Vector3 newScale = new Vector3 (size, size, 1);
+			transform.localScale = Vector3.Lerp(transform.localScale, newScale, Time.deltaTime);
+
 		}
+		print (mass/10);
 	}
 	
 	void Destroy(){
 		Destroy (this.gameObject);
 	}
 
-	public int Mass { get { return mass; } set { mass = value; } }
+	public float Mass { get { return mass; } set { mass = value; } }
 }
