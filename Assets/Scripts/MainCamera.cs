@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraMovement : MonoBehaviour {
+public class MainCamera : MonoBehaviour {
 
 	public Transform playerSpheres;
 	public float followSpeed = 1;

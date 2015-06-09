@@ -20,10 +20,10 @@ public class Cell : MonoBehaviour {
 
 	void CheckEated(GameObject eater) {
 
+		float intersectionArea = 0;
 		float area = radius*radius;
-		print (area + "\t" + intersectionArea + "\t" + r1 + "\t" + r2 + "\t" + d);
+
 		if(intersectionArea >= area/100*99){
-		
 			transform.position = Vector2.MoveTowards (transform.position, eater.transform.position, 10f);
 			eater.GetComponent<Cell> ().Mass += mass;
 			eated = true;
